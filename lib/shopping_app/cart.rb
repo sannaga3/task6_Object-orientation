@@ -28,8 +28,8 @@ class Cart
   def check_out
     return if owner.wallet.balance < total_amount
     self.owner.wallet.withdraw(total_amount)
-    items.each{|item| item.owner.wallet.deposit(item.price) }
-    items.each{|item| item.owner = self}
+    items.each{|item| item.owner.wallet.deposit(item.price)}
+    items.each{|item| item.owner = owner}
     self.items.clear
   # ## 要件
   #   - カートの中身（Cart#items）のすべてのアイテムの購入金額が、カートのオーナーのウォレットからアイテムのオーナーのウォレットに移されること。
